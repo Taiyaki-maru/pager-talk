@@ -3,6 +3,10 @@ const session = require('express-session');
 const helmet = require('helmet');
 const path = require('path');
 
+const authRouter = require('./routes/auth');
+const apiRouter = require('./routes/api');
+const { requireAuth } = require('./middleware/auth');
+
 const app = express();
 const PORT = process.env.PORT || 8000;
 
@@ -26,8 +30,29 @@ app.use(session({
   }
 }));
 
-app.get('/health', (req, res) => {
-  res.send('Pager Talk Server is running on port 8000');
+// ルーティング適用
+app.use('/', authRouter);
+app.use('/api', apiRouter);
+
+// ルート階層アクセス時のリダイレクト制御
+app.get('/', (req, res) => {
+  if (req.session && req.session.userId) {
+    return res.redirect('/talks');
+  }
+  res.redirect('/login');
+});
+
+// 各画面プレースホルダー (Phase 4でPugテンプレート作成)
+app.get('/talks', requireAuth, (req, res) => {
+  res.render('talks', { user: req.session });
+});
+
+app.get('/chat/:id', requireAuth, (req, res) => {
+  res.render('chat', { user: req.session, targetId: req.params.id });
+});
+
+app.get('/dictionary', requireAuth, (req, res) => {
+  res.render('dictionary', { user: req.session });
 });
 
 app.listen(PORT, () => {
