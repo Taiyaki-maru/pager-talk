@@ -1,0 +1,48 @@
+extends layout
+
+block content
+  .pager-card.p-3
+    .d-flex.justify-content-between.align-items-center.mb-2
+      a.btn.btn-sm.btn-pager-outline(href="/talks") [ 戻る ]
+      span#target-name.fw-bold 読込中...
+      div
+    
+    // メッセージ表示エリア
+    #messages-box.pager-card.p-3.mb-3(style="height: 240px; overflow-y: auto; background-color: #FAFAFA;")
+      .text-center.py-3 読み込み中...
+
+    // 16桁ディスプレイ
+    .pager-display.p-2.mb-3.text-end#display 16桁以内の数字を入力
+
+    // テンキーボード
+    .keypad-grid
+      button.btn.btn-pager-outline.keypad-btn(onclick="appendNum('1')") 1
+      button.btn.btn-pager-outline.keypad-btn(onclick="appendNum('2')") 2
+      button.btn.btn-pager-outline.keypad-btn(onclick="appendNum('3')") 3
+      button.btn.btn-pager-outline.keypad-btn(onclick="appendNum('4')") 4
+      button.btn.btn-pager-outline.keypad-btn(onclick="appendNum('5')") 5
+      button.btn.btn-pager-outline.keypad-btn(onclick="appendNum('6')") 6
+      button.btn.btn-pager-outline.keypad-btn(onclick="appendNum('7')") 7
+      button.btn.btn-pager-outline.keypad-btn(onclick="appendNum('8')") 8
+      button.btn.btn-pager-outline.keypad-btn(onclick="appendNum('9')") 9
+      button.btn.btn-pager-outline.keypad-btn(onclick="clearNum()") [ 消去 ]
+      button.btn.btn-pager-outline.keypad-btn(onclick="appendNum('0')") 0
+      button.btn.btn-pager-outline.keypad-btn(type="button", data-bs-toggle="modal", data-bs-target="#dictModal") [ 辞書 ]
+    
+    button.btn.btn-pager.w-100.mt-2.py-2#send-btn(onclick="sendMessage()") [ 送信 ]
+
+  // 辞書選択モーダル
+  .modal.fade#dictModal(tabindex="-1")
+    .modal-dialog.modal-dialog-centered
+      .modal-content.pager-card
+        .modal-header
+          h5.modal-content-title.h6.m-0 [ マイ辞書から入力 ]
+          button.btn-close(type="button", data-bs-dismiss="modal")
+        .modal-body
+          .list-group#modal-dict-list
+            p.text-center 読み込み中...
+
+block scripts
+  script.
+    const TARGET_ID = "#{targetId}";
+  script(src="/js/chat.js")

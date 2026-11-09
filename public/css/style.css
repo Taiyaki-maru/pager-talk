@@ -1,0 +1,85 @@
+/* 全体スタイル: オフホワイト背景・暗グレーテキスト・等幅フォント */
+body {
+  background-color: #F4F4F4;
+  color: #222222;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* カード・コンテナ枠線 */
+.pager-card {
+  background-color: #FFFFFF;
+  border: 2px solid #222222;
+  border-radius: 4px;
+}
+
+/* ポケベル液晶ディスプレイ */
+.pager-display {
+  background-color: #E8E8E8;
+  border: 2px solid #222222;
+  color: #222222;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.25rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* メッセージ吹き出し */
+.msg-bubble {
+  max-width: 75%;
+  word-break: break-all;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+}
+.msg-self {
+  background-color: #2D2D2D;
+  color: #FFFFFF;
+  margin-left: auto;
+}
+.msg-target {
+  background-color: #E8E8E8;
+  color: #222222;
+  border: 1px solid #222222;
+  margin-right: auto;
+}
+
+/* ボタンデザイン（テキストラベル主義） */
+.btn-pager {
+  background-color: #2D2D2D;
+  color: #FFFFFF;
+  border: 2px solid #222222;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+}
+.btn-pager:hover {
+  background-color: #222222;
+  color: #FFFFFF;
+}
+.btn-pager-outline {
+  background-color: transparent;
+  color: #222222;
+  border: 2px solid #222222;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+}
+.btn-pager-outline:hover {
+  background-color: #222222;
+  color: #FFFFFF;
+}
+
+/* テンキーボード グリッドレイアウト */
+.keypad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.keypad-btn {
+  height: 48px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* 未読通知バッジ（●） */
+.unread-badge {
+  color: #222222;
+  font-weight: bold;
+}

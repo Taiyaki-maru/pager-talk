@@ -1,0 +1,15 @@
+doctype html
+html(lang="ja")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Pager Talk
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    .container.py-4(style="max-width: 500px;")
+      header.mb-4.text-center.border-bottom.pb-2(style="border-color: #222222 !important;")
+        h1.h4.m-0.fw-bold PAGER TALK
+      block content
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js")
+    block scripts

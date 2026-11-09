@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  .pager-card.p-4
+    h2.h5.mb-3.text-center [ ログイン ]
+    if error
+      .alert.alert-secondary.py-2.small.mb-3(role="alert")= error
+    form(action="/login", method="POST")
+      .mb-3
+        label.form-label.small ユーザーID
+        input.form-control.rounded-0(type="text", name="userId", placeholder="user01", required)
+      .mb-4
+        label.form-label.small パスワード
+        input.form-control.rounded-0(type="password", name="password", placeholder="pass1234", required)
+      button.btn.btn-pager.w-100(type="submit") [ ログイン ]
