@@ -36,7 +36,7 @@ block content
     .modal-dialog.modal-dialog-centered
       .modal-content.pager-card
         .modal-header
-          h5.modal-content-title.h6.m-0 [ マイ辞書から入力 ]
+          h5.modal-title.h6.m-0 [ マイ辞書から入力 ]
           button.btn-close(type="button", data-bs-dismiss="modal")
         .modal-body
           .list-group#modal-dict-list
@@ -44,5 +44,5 @@ block content
 
 block scripts
   script.
-    const TARGET_ID = "#{targetId}";
+    var TARGET_ID = "!{targetId}";
   script(src="/js/chat.js")

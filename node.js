@@ -10,7 +10,9 @@ const { requireAuth } = require('./middleware/auth');
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
