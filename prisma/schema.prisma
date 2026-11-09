@@ -1,0 +1,43 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// 1. ユーザーテーブル (固定5アカウント用)
+model User {
+  id           Int          @id @default(autoincrement())
+  userId       String       @unique // ログイン用ID (例: user01)
+  passwordHash String       // bcryptでハッシュ化したパスワード
+  displayName  String       // 表示名 (例: ユーザーA)
+  
+  sentMessages     Message[]    @relation("SentMessages")
+  receivedMessages Message[]    @relation("ReceivedMessages")
+  dictionaries     Dictionary[]
+}
+
+// 2. メッセージテーブル (16桁制限の数字メッセージ)
+model Message {
+  id         Int      @id @default(autoincrement())
+  senderId   Int
+  receiverId Int
+  numberText String   // 送信された数字文字列 (例: "0840")
+  isRead     Boolean  @default(false) // 未読通知バッジ (●) 判定用
+  createdAt  DateTime @default(now())  // 並び順用
+
+  sender   User @relation("SentMessages", fields: [senderId], references: [id])
+  receiver User @relation("ReceivedMessages", fields: [receiverId], references: [id])
+}
+
+// 3. マイ辞書テーブル
+model Dictionary {
+  id     Int    @id @default(autoincrement())
+  userId Int
+  code   String // 数字コード (例: "0840")
+  label  String // 意味 (例: "おはよう")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
